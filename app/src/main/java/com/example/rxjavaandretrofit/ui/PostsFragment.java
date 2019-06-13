@@ -24,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.DaggerFragment;
 
 public class PostsFragment extends DaggerFragment {
@@ -35,6 +36,7 @@ public class PostsFragment extends DaggerFragment {
     PostsListAdapter mAdapter;
 
     private MainViewModel mViewModel;
+    private Unbinder mUnbinder;
 
     @BindView(R.id.main_fragment_list_view)
     RecyclerView mListView;
@@ -43,7 +45,7 @@ public class PostsFragment extends DaggerFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragments_layout, container, false);
-        ButterKnife.bind(this, fragmentView);
+        mUnbinder = ButterKnife.bind(this, fragmentView);
         return fragmentView;
     }
 
@@ -71,5 +73,11 @@ public class PostsFragment extends DaggerFragment {
         else {
             ((BaseActivity)getActivity()).showLongToast(action.getError().getMessage());
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 }

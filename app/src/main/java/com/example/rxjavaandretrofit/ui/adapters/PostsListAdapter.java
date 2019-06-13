@@ -14,6 +14,9 @@ import com.example.rxjavaandretrofit.models.Post;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.PostsViewHolder> {
 
     private List<Post> mPosts = new ArrayList<>();
@@ -45,13 +48,12 @@ public class PostsListAdapter extends RecyclerView.Adapter<PostsListAdapter.Post
 
     class PostsViewHolder extends RecyclerView.ViewHolder{
 
-        TextView mPostTitleTv;
-        TextView mPostBodyTv;
+        @BindView(R.id.post_title) TextView mPostTitleTv;
+        @BindView(R.id.post_body) TextView mPostBodyTv;
 
         public PostsViewHolder(@NonNull View itemView) {
             super(itemView);
-            mPostTitleTv = itemView.findViewById(R.id.post_title);
-            mPostBodyTv = itemView.findViewById(R.id.post_body);
+            ButterKnife.bind(this, itemView);
         }
     }
 

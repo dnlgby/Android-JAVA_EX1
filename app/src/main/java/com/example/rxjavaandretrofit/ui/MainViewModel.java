@@ -32,7 +32,7 @@ public class MainViewModel extends ViewModel {
     private CompositeDisposable mDisposables;
 
     @Inject
-    public MainViewModel(Context context) {
+    MainViewModel(Context context) {
         mContext = context;
         mPostsResponse = new MutableLiveData<>();
         mCommentsResponse = new MutableLiveData<>();
@@ -40,32 +40,32 @@ public class MainViewModel extends ViewModel {
     }
 
 
-    public void makePostsCall() {
-        Single<List<Post>> responseFlowable = mTodosApi.getPosts()
+    void makePostsCall() {
+        Single<List<Post>> postsSingle = mTodosApi.getPosts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        mDisposables.add(responseFlowable.subscribe(
+        mDisposables.add(postsSingle.subscribe(
                 res -> mPostsResponse.setValue(Action.responseSuccess(mContext.getString(R.string.success_string), res)),
                 e -> mPostsResponse.setValue(Action.responseFailure(e))));
     }
 
-    public void makeCommentsCall() {
-        Single<List<Comment>> responseFlowable = mTodosApi.getComments()
+    void makeCommentsCall() {
+        Single<List<Comment>> commentsSingle = mTodosApi.getComments()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        mDisposables.add(responseFlowable.subscribe(
+        mDisposables.add(commentsSingle.subscribe(
                 res -> mCommentsResponse.setValue(Action.responseSuccess(mContext.getString(R.string.success_string), res)),
                 e -> mCommentsResponse.setValue(Action.responseFailure(e))));
     }
 
-    public LiveData<Action> showPostsResponse() {
+    LiveData<Action> showPostsResponse() {
         return mPostsResponse;
     }
 
 
-    public LiveData<Action> showCommentsResponse() {
+    LiveData<Action> showCommentsResponse() {
         return mCommentsResponse;
     }
 

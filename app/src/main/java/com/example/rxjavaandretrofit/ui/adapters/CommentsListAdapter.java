@@ -14,6 +14,9 @@ import com.example.rxjavaandretrofit.models.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CommentsListAdapter extends RecyclerView.Adapter<CommentsListAdapter.CommentsViewHolder> {
 
     private List<Comment> mComments = new ArrayList<>();
@@ -45,13 +48,12 @@ public class CommentsListAdapter extends RecyclerView.Adapter<CommentsListAdapte
 
     class CommentsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mCommentEmailTv;
-        TextView mCommentBodyTv;
+        @BindView(R.id.comment_email) TextView mCommentEmailTv;
+        @BindView(R.id.comment_body) TextView mCommentBodyTv;
 
         public CommentsViewHolder(@NonNull View itemView) {
             super(itemView);
-            mCommentEmailTv = itemView.findViewById(R.id.comment_email);
-            mCommentBodyTv = itemView.findViewById(R.id.comment_body);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
