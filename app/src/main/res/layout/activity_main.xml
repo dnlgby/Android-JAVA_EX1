@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/activity_main_buttons_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/actvity_main_btn_margin_val"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/activity_main_load_posts_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/actvity_main_btn_margin_val"
+            android:text="@string/activity_main_load_posts"
+            android:textSize="@dimen/actvity_main_text_size" />
+
+        <Button
+            android:id="@+id/activity_main_load_comments_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_main_load_comments"
+            android:textSize="@dimen/actvity_main_text_size" />
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fragments_place_holder"
+        android:layout_below="@id/activity_main_buttons_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
+</RelativeLayout>
