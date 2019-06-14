@@ -4,7 +4,7 @@ import android.widget.Toast;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class BaseActivity extends DaggerAppCompatActivity {
+public abstract class BaseActivity extends DaggerAppCompatActivity {
 
     public void showLongToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show();
